@@ -10,7 +10,7 @@ usersController.getUsers = async (req, res) => {
 usersController.createUser = async(req, res) => {
     const {username} =req.body;
     const newUser = new User({username});
-    //await newUser.save();
+    await newUser.save();
     res.json({message: 'Usuario creado'})
 }
 

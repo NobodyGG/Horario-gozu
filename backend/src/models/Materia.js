@@ -5,7 +5,7 @@ const materiaSchema = new Schema({
         type: String,
         required: true
     },
-    Sigla: {
+    sigla: {
         type: String,
         required: true
     },

@@ -14,3 +14,5 @@ const horarioSchema = new Schema({
         required: true
     }
 })
+
+module.exports = model('Horario', horarioSchema);

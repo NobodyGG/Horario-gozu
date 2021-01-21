@@ -15,7 +15,7 @@ materiasController.createMateria = async (req, res) => {
         teacher: teacher
     });
     //console.log(newMateria)
-    //await newMateria.save();
+    await newMateria.save();
     res.json({message: 'Materia Guardada'})
 }
 
