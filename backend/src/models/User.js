@@ -1,4 +1,5 @@
 const { Schema, model} = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema({
     username: {
@@ -24,6 +25,15 @@ const userSchema = new Schema({
 },
 {
     timetamps: true
-})
+});
+
+userSchema.methods.encryptPassword = async (password) =>{
+    const salt = await bcrypt.genSalt(10);
+    return bcrypt.hash(password, salt);
+};
+
+userSchema.methods.valitePassword = function(password){
+    return bcrypt.compare(password, this.password);
+};
 
 module.exports = model('User', userSchema);
