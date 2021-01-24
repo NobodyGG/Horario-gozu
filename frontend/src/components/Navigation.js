@@ -16,13 +16,16 @@ export default class Navigation extends Component {
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/">Materias</Link>
+                                    <Link className="nav-link" to="/user">Create User</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/create">Create Materia</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/user">Create User</Link>
+                                    <Link className="nav-link" to="/">Materias</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/horarios">Horarios</Link>
                                 </li>
                             </ul>
                         </div>

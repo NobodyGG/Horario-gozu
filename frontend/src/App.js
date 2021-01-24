@@ -7,17 +7,20 @@ import Navigation from './components/Navigation'
 import CreateMateria from './components/CreateMateria'
 import CreateUser from './components/CreateUser'
 import MateriasList from './components/MateriasList'
+import Horarios from './components/Horarios'
 
 function App() {
   return (
     <Router>
       <Navigation/>
-
-      <Route path="/" exact component={MateriasList}/>
-      <Route path="/edit/:id" component={CreateMateria}/>
-      <Route path="/create" component={CreateMateria}/>
-      <Route path="/user" component={CreateUser}/>
-
+      <div className="container p-4">
+        <Route path="/create" component={CreateMateria}/>
+        <Route path="/edit/:id" component={CreateMateria}/>
+        <Route path="/" exact component={MateriasList}/>
+        <Route path="/user" component={CreateUser}/>
+        <Route path="/horarios" component={Horarios}></Route>
+      </div>
+      
     </Router>
   );
 }
