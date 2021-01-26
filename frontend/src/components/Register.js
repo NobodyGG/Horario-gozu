@@ -20,11 +20,11 @@ const Register = () => {
             password,
         })
         setUserData({
-            token: loginRes.data.token,
+            //token: loginRes.data.token,
             user: loginRes.data.user
         })
-        localStorage.setItem("auth-token", loginRes.data.token)
-        history.push("/users/login")
+        localStorage.setItem("auth-token", "")
+        history.push("/")
     }
 
     return(

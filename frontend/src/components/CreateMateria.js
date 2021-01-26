@@ -76,17 +76,17 @@ export default class CreateMateria extends Component {
                                     onDoubleClick={() => this.deleteMateria(materias._id)}
                                     >
                                     {materias.name}
-                                    <table class="table table-dark table-striped">
-                                    <tr>
-                                        <td>Sigla</td>
-                                        <td>Teacher</td>
-                                        <td>Grupo</td>
-                                    </tr>
-                                    <tr>
+                                    <table className="table table-dark table-striped">
+                                    <tbody>
+                                        <th>Sigla</th>
+                                        <th>Teacher</th>
+                                        <th>Grupo</th>
+                                    </tbody>
+                                    <tbody>
                                         <td>{materias.sigla}</td>
                                         <td>{materias.teacher}</td>
                                         <td>{materias.grupo}</td>
-                                    </tr>
+                                    </tbody>
                                     </table>
                                 </li>
                             )   
