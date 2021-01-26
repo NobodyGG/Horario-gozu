@@ -6,7 +6,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const verifyToken = require('./verifyToken');
 
-router.post('/signup', async (req, res, next) => {
+router.post('/api/signup', async (req, res, next) => {
     const {username, email, password} = req.body;
     const user = new User({
         username,
@@ -20,7 +20,7 @@ router.post('/signup', async (req, res, next) => {
     
 })
 
-router.post('/signin', async(req, res, next) => {
+router.post('/api/signin', async(req, res, next) => {
     const {email, password} = req.body;
     const user = await User.findOne({email: email});
     if(!user){
@@ -40,7 +40,7 @@ router.post('/signin', async(req, res, next) => {
     res.json({auth: true, token})       
 })
 
-router.get('/profile', verifyToken, async (req, res, next) => {
+router.get('/api/profile', verifyToken, async (req, res, next) => {
     
     const user = await User.findById(req.userId, {password: 0});
     if(!user){
@@ -49,5 +49,22 @@ router.get('/profile', verifyToken, async (req, res, next) => {
 
     res.json(user)
 })
+
+router.post("/api/tokenIsValid", async (req, res) => {
+    try {
+      const token = req.header("x-access-token");
+      if (!token) return res.json(false);
+  
+      const verified = jwt.verify(token, process.env.SECRET);
+      if (!verified) return res.json(false);
+  
+      const user = await User.findById(verified.id);
+      if (!user) return res.json(false);
+  
+      return res.json(true);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
 
 module.exports = router;
