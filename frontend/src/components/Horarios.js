@@ -18,7 +18,7 @@ const Horarios = () => {
                         <input type="text" className="form-input"/>
                     </div>
                     <div className="col-sm">
-                        <label className="form-label text-light m-auto">Grupo:</label>
+                        <label className="form-label text-light m-auto">Ambiente:</label>
                         <input type="text" className="form-input"/>
                     </div>
                     <div className="col-sm-3">
