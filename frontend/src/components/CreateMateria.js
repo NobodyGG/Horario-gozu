@@ -127,6 +127,7 @@ export default class CreateMateria extends Component {
                                 >
                                     {materias.name}
                                     <table className="table table-dark table-striped">
+<<<<<<< HEAD
                                         <thead>
                                             <tr>
                                                 <th scope="col">Sigla</th>
@@ -141,6 +142,18 @@ export default class CreateMateria extends Component {
                                                 <td>{materias.grupo}</td>
                                             </tr>
                                         </tbody>
+=======
+                                    <tbody>
+                                        <th>Sigla</th>
+                                        <th>Teacher</th>
+                                        <th>Grupo</th>
+                                    </tbody>
+                                    <tbody>
+                                        <td>{materias.sigla}</td>
+                                        <td>{materias.teacher}</td>
+                                        <td>{materias.grupo}</td>
+                                    </tbody>
+>>>>>>> origin/master
                                     </table>
                                 </li>
                             )
