@@ -38,7 +38,7 @@ export default function Navigation() {
                                     {/*<li className="nav-item">
                                     <Link className="nav-link" to="/">Materias</Link>
                                     </li>*/}
-                                    <li className="nav-item">
+                                    <li className="nav-item ">
                                         <Link className="nav-link" to="/horarios">Horarios</Link>
                                     </li>
                                 </>

@@ -9,10 +9,15 @@ const horarioSchema = new Schema({
         type: String,
         required: true
     },
-    Ambiente:{
+    ambiente:{
         type: String,
         required: true
-    }
+    },
+    date: [{
+        day: String,
+        start: String,
+        end: String
+    }],
 })
 
 module.exports = model('Horario', horarioSchema);
