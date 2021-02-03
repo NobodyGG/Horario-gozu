@@ -4,13 +4,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import axios from 'axios'
 import Navigation from './components/Navigation'
-import CreateMateria from './components/CreateMateria'
-import CreateUser from './components/CreateUser'
+
 import Home from './components/Home'
+import CreateDocente from './components/CreateDocente'
+import CreateMateria from './components/CreateMateria'
+import CreateAmbiente from './components/CreateAmbiente'
 import Horarios from './components/Horarios'
+
 import Login from './components/Login'
 import Register from './components/Register'
+
 import UserContext from './context/UserContext'
+
 
 
 function App() {
@@ -53,9 +58,9 @@ function App() {
         <div className="container p-4">
           <Route path="/users/signin"><Login/></Route>
           <Route path="/users/signup"><Register/></Route>
-          <Route path="/user/create" component={CreateUser}/>
+          <Route path="/docente/create"><CreateDocente/></Route>
           <Route path="/materia/create" component={CreateMateria}/>
-          {/*<Route path="/edit/:id" component={CreateMateria}/>*/}
+          <Route path="/ambiente/create"><CreateAmbiente/> </Route>
           <Route path="/horarios" ><Horarios/></Route>
           <Route path="/" exact component={Home}/>
           

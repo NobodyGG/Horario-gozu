@@ -4,7 +4,7 @@ export default class CreateUser extends Component{
     render(){
         return(
             <div>
-                USER
+                DOCENTE
             </div>
         )
     }
