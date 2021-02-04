@@ -29,9 +29,9 @@ export default class CreateMateria extends Component {
             sigla: e.target.value
         })
     }
-    onChangeTeacher = (e) => {
+    onChangeSemestre = (e) => {
         this.setState({
-            teacher: e.target.value
+            semestre: e.target.value
         })
     }
     onChangeGrupo = (e) => {
@@ -44,13 +44,13 @@ export default class CreateMateria extends Component {
         await axios.post('http://localhost:4000/api/materias', {
             name: this.state.name,
             sigla: this.state.sigla,
-            teacher: this.state.teacher,
+            semestre: this.state.semestre,
             grupo: this.state.grupo
         })
         this.setState({
             name: '',
             sigla: '',
-            teacher: '',
+            semestre: '',
             grupo: ''
         })
         //this.getMaterias();
@@ -95,9 +95,9 @@ export default class CreateMateria extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Teacher"
-                                    value={this.state.teacher}
-                                    onChange={this.onChangeTeacher}
+                                    placeholder="Semestre"
+                                    value={this.state.semestre}
+                                    onChange={this.onChangeSemestre}
                                 />
                             </div>
                             <div className="form-group">
@@ -127,18 +127,17 @@ export default class CreateMateria extends Component {
                                 >
                                     {materias.name}
                                     <table className="table table-dark table-striped">
-
                                         <thead>
                                             <tr>
                                                 <th scope="col">Sigla</th>
-                                                <th scope="col">Teacher</th>
+                                                <th scope="col">Semestre</th>
                                                 <th scope="col">Grupo</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>                                                
                                                 <td>{materias.sigla}</td>
-                                                <td>{materias.teacher}</td>
+                                                <td>{materias.semestre}</td>
                                                 <td>{materias.grupo}</td>
                                             </tr>
                                         </tbody>

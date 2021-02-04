@@ -9,14 +9,18 @@ const materiaSchema = new Schema({
         type: String,
         required: true
     },
-    teacher: {
+    semestre: {
         type: String,
         required: true
     },
     grupo: {
         type: String
-
-    }
+    },
+    data: [{
+        day: String,
+        start: String,
+        end: String
+    }],
 })
 
 module.exports = model('Materia', materiaSchema);

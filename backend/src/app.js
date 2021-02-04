@@ -14,6 +14,7 @@ app.use(express.json());
 app.use('/api/users', require('./routes/users'));
 app.use('/api/materias', require('./routes/materias'));
 app.use('/api/horarios', require('./routes/horarios'));
+app.use('/api/docentes', require('./routes/docentes'));
 app.use(require('./controllers/auth.controller'));
 
 module.exports = app;
