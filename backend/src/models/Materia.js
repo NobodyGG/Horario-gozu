@@ -16,11 +16,15 @@ const materiaSchema = new Schema({
     grupo: {
         type: String
     },
-    data: [{
-        day: String,
-        start: String,
-        end: String
-    }],
+    dia: {
+        type: String
+    },
+    inicio: {
+        type: String
+    },
+    fin: {
+        type: String
+    }
 })
 
 module.exports = model('Materia', materiaSchema);

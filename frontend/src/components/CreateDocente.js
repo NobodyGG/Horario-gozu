@@ -5,10 +5,13 @@ const CreateDocente = () => {
 
     const [docente, setDocente] = useState([])
 
+    const [getdocente, setGetdocente] = useState([])
+    
     const [materia, setMateria] = useState([])
 
     const [editing, setEditing] = useState(false)
-
+    
+    
     
 
     const [insert, setInsertar] = useState({
@@ -20,24 +23,11 @@ const CreateDocente = () => {
         materia: ''
     });
 
+    
     useEffect(() => {
         obtenerDocentes()
         obtenerMaterias()
     }, [])
-
-    const obtenerDocentes = async () => {
-        const res = await axios.get('http://localhost:4000/api/docentes')
-        const docentes = await res.data
-        //console.log(docentes)
-        setDocente(docentes)
-    }
-
-    const insertarDocente = async () => {
-        const res = await axios.post('http://localhost:4000/api/docentes', insert)
-        const inserDocente = await res.data
-        setInsertar(inserDocente)
-    }
-
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -48,49 +38,82 @@ const CreateDocente = () => {
         console.log(insert)
     }
 
+    const obtenerDocentes = async () => {
+        const res = await axios.get('http://localhost:4000/api/docentes')
+        const docentes = await res.data
+        setDocente(docentes)
+        //console.log(docentes)
+    }
+
+    //CREAR DOCENTE
+    const insertarDocente = async () => {
+        const res = await axios.post('http://localhost:4000/api/docentes', insert)
+        const inserDocente = await res.data
+        setInsertar(inserDocente)
+    }
+
+    // GET MATERIA
     const obtenerMaterias = async () => {
         const res = await axios.get('http://localhost:4000/api/materias')
         const materias = await res.data
         setMateria(materias)
+
     }
 
-    /*const editarDocente = async()=>{
+    //ELIMINAR
+    const deleteDocente = async (id) =>{
+        await axios.delete('http://localhost:4000/api/docentes/'+ id)
+        const res = await axios.get('http://localhost:4000/api/docentes');
+        setDocente(res.data)
+    }
+    //OBTENER 1 DOCENTE
+    const obtenerDocente = async (id) =>{
+        const res = await axios.get('http://localhost:4000/api/docentes/'+ id)
+        const docent = await res.data
+        setGetdocente(docent)
+    }
+
+    //EDITAR    
+    const cardEditar = () =>{
+        setEditing(!editing)
+    }
+
+    const selecDocente = (docen) =>{
+        setInsertar(docen)
+        cardEditar()
+    }
+
+    const editarDocente = async()=>{
         const res = await axios.put('http://localhost:4000/api/docentes/'+insert._id, insert)
         var editDoc = res.data
-        editDoc.map(doc=>{
-            if(insert._id===doc._id){
-                doc.nombres=insert.nombres;
-                doc.apellidos=insert.apellidos;
-            }
-        })
-        setDocente(editDoc) 
-    }*/
+        
+    }
+
+    
 
     return (
         <div className="row">
             <div className="col-md-4">
                 {
-                    editing ? (
+                    editing ? (                        
                         <div className="card card-body">
-                            <h3>EDIT DOCENTE</h3>
+                            <h3>EDIT DOCENTE</h3>                           
                             <form >
                                 <div className="form-group">
                                     <input
                                         type="text"
                                         name="nombres"
                                         className="form-control"
-                                        placeholder="Nombre: "
-                                        value="xd"
                                         onChange={handleChange}
+                                        defaultValue={getdocente && getdocente.nombres}
                                     />
                                 </div>
                                 <div className="form-group">
                                     <input
                                         type="text"
                                         name="apellidos"
-                                        className="form-control"
-                                        placeholder="Apellido: "
-                                        value="xd"
+                                        className="form-control"                                        
+                                        defaultValue={getdocente && getdocente.apellidos}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -98,9 +121,8 @@ const CreateDocente = () => {
                                     <input
                                         type="text"
                                         name="ci"
-                                        className="form-control"
-                                        placeholder="C.I.: "
-                                        value={insert && insert.ci}
+                                        className="form-control"                                        
+                                        defaultValue={getdocente && getdocente.ci}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -108,9 +130,8 @@ const CreateDocente = () => {
                                     <input
                                         type="text"
                                         name="email"
-                                        className="form-control"
-                                        placeholder="Email: "
-                                        value={insert && insert.email}
+                                        className="form-control"                                        
+                                        defaultValue={getdocente && getdocente.email}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -118,9 +139,8 @@ const CreateDocente = () => {
                                     <input
                                         type="text"
                                         name="telefono"
-                                        className="form-control"
-                                        placeholder="Telefono: "
-                                        value={insert && insert.telefono}
+                                        className="form-control"                                        
+                                        defaultValue={getdocente && getdocente.telefono}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -128,21 +148,20 @@ const CreateDocente = () => {
                                     <input
                                         type="text"
                                         name="materia"
-                                        className="form-control"
-                                        placeholder="Materia: "
-                                        value={insert && insert.materia}
+                                        className="form-control"                                        
+                                        defaultValue={getdocente && getdocente.materia}
                                         onChange={handleChange}
                                         list="materias"
                                     />
                                     <datalist id="materias">
                                         {
                                             materia.map(item => (
-                                                <option value={item.name}></option>
+                                                <option key={item._id} value={item.name}></option>
                                             ))
                                         }
                                     </datalist>
-                                </div>
-                                <button onClick={()=>insertarDocente()} className="btn btn-primary w-100">
+                                </div>           
+                                <button onClick={()=>editarDocente()} className="btn btn-primary w-100">
                                     Save
                                 </button>
                             </form>
@@ -256,11 +275,20 @@ const CreateDocente = () => {
                                     </tbody>
                                 </table>
                                 <button 
-                                        className="btn btn btn-secondary w-100"
+                                        
+                                        className="btn btn btn-secondary w-50"
                                         onClick={
-                                            () =>{setEditing(true)}
-                                        }
+                                            () =>{selecDocente(); obtenerDocente(item._id)}
+                                        }     
                                     >Editar
+                                </button>
+                                <button 
+                                        
+                                        className="btn btn-danger w-50"
+                                        onClick={
+                                            () =>{deleteDocente(item._id)}
+                                        }     
+                                    >Eliminar
                                 </button>
                             </li>
                         ))

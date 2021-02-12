@@ -1,7 +1,6 @@
 const docentesController = {};
 
 const Docente = require('../models/Docente');
-const Materia = require('../models/Materia');
 
 docentesController.getDocentes = async(req, res)=>{
     const docentes = await Docente.find()
