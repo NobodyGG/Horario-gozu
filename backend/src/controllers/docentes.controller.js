@@ -9,14 +9,14 @@ docentesController.getDocentes = async(req, res)=>{
 }
 
 docentesController.createDocente = async(req, res)=>{
-    const {nombres, apellidos, ci, email, telefono, materia} = req.body
+    const {nombres, apellidos, ci, email, telefono, horasTrabajo} = req.body
     const newDocente = new Docente({
         nombres,
         apellidos,
         ci,
         email,
         telefono,
-        materia
+        horasTrabajo
     })
 
     await newDocente.save()
@@ -29,14 +29,14 @@ docentesController.getDocente = async(req, res) =>{
 }
 
 docentesController.updateDocente = async(req, res) =>{
-    const {nombres, apellidos, ci, email, telefono, materia} = req.body
+    const {nombres, apellidos, ci, email, telefono, horasTrabajo} = req.body
     await Docente.findByIdAndUpdate({_id: req.params.id},{
         nombres,
         apellidos,
         ci,
         email,
         telefono,
-        materia
+        horasTrabajo
     })
     res.json({message: 'Docente Actualizado'})
 }

@@ -16,13 +16,10 @@ const materiaSchema = new Schema({
     grupo: {
         type: String
     },
-    dia: {
+    horas: {
         type: String
     },
-    inicio: {
-        type: String
-    },
-    fin: {
+    docente: {
         type: String
     }
 })

@@ -6,6 +6,9 @@ const ambienteSchema = new Schema({
     },
     piso:{
         type: String
+    },
+    disponible:{
+        type: String
     }
 })
 

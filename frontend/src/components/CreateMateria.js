@@ -11,7 +11,7 @@ export default class CreateMateria extends Component {
         //this.getMaterias();
         const res = await axios.get('http://localhost:4000/api/materias');
         this.setState({ materias: res.data })
-        console.log(this.state.materias)
+        //console.log(this.state.materias)
     }
     /*
     getMateriass = async() => {
@@ -39,11 +39,16 @@ export default class CreateMateria extends Component {
             grupo: e.target.value
         })
     }
-    onChangeDia = (e) => {
+    onChangeHoras = (e) => {
         this.setState({
-            dia: e.target.value
+            horas: e.target.value
         })
     }
+    onChangeDocente = (e) =>{
+        this.setState({
+            docente: e.target.value
+        })
+    }    
 
     onSubmit = async e => {
         e.preventDefault();
@@ -52,14 +57,16 @@ export default class CreateMateria extends Component {
             sigla: this.state.sigla,
             semestre: this.state.semestre,
             grupo: this.state.grupo,
-            dia: this.state.dia
+            horas: this.state.horas,
+            docente: this.state.docente,            
         })
         this.setState({
             name: '',
             sigla: '',
             semestre: '',
             grupo: '',
-            dia: ''
+            horas: '',
+            docente: '',            
         })
         //this.getMaterias();
         const res = await axios.get('http://localhost:4000/api/materias');
@@ -85,7 +92,7 @@ export default class CreateMateria extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Asignatura"
+                                    placeholder="Asignatura:"
                                     value={this.state.name}
                                     onChange={this.onChangeName}
                                 />
@@ -94,7 +101,7 @@ export default class CreateMateria extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Sigla"
+                                    placeholder="Sigla:"
                                     value={this.state.sigla}
                                     onChange={this.onChangeSigla}
                                 />
@@ -103,7 +110,7 @@ export default class CreateMateria extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Semestre"
+                                    placeholder="Semestre:"
                                     value={this.state.semestre}
                                     onChange={this.onChangeSemestre}
                                 />
@@ -112,7 +119,7 @@ export default class CreateMateria extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Grupo"
+                                    placeholder="Grupo:"
                                     value={this.state.grupo}
                                     onChange={this.onChangeGrupo}
                                 />
@@ -121,11 +128,25 @@ export default class CreateMateria extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Dia"
-                                    value={this.state.dia}
-                                    onChange={this.onChangeDia}
+                                    placeholder="Horas Semana: "
+                                    value={this.state.horas}
+                                    onChange={this.onChangeHoras}
                                 />
                             </div>
+                            <div className="form-group">
+                                    <input
+                                            type="text"
+                                            name="inicio"
+                                            className="form-control"
+                                            placeholder="Docente: "
+                                            value={this.state.docente}
+                                            onChange={this.onChangeDocente}                                          
+                                            list="doc"
+                                    />
+                                    <datalist id="doc">
+                                        <option >---</option>                                                                             
+                                    </datalist>
+                            </div>                            
                             <button type="submit" className="btn btn-primary w-100">
                                 Save
                             </button>
@@ -148,7 +169,8 @@ export default class CreateMateria extends Component {
                                                 <th scope="col">Sigla</th>
                                                 <th scope="col">Semestre</th>
                                                 <th scope="col">Grupo</th>
-                                                <th scope="col">Dia</th>
+                                                <th scope="col">Horas</th>
+                                                <th scope="col">Docente</th>                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -156,7 +178,8 @@ export default class CreateMateria extends Component {
                                                 <td>{materias.sigla}</td>
                                                 <td>{materias.semestre}</td>
                                                 <td>{materias.grupo}</td>
-                                                <td>{materias.dia}</td>
+                                                <td>{materias.horas}</td>
+                                                <td>{materias.docente}</td>                                                
                                             </tr>
                                         </tbody>
                                     </table>

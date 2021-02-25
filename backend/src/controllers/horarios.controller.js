@@ -8,17 +8,25 @@ horariosController.getHorarios = async(req, res) => {
 }
 
 horariosController.createHorario = async(req, res)=>{
-    const {sigla, grupo, ambiente, date} = req.body;
+    const {semestre, sigla, grupo, ambiente} = req.body;
     const newHorario = new Horario({
+        semestre,
         sigla,
         grupo,
         ambiente,
-        date
     })
 
     await newHorario.save();
     res.json({message: 'Horario Creado'})
 }
 
+horariosController.getHorario = async(req, res)=>{
+    const horario = await Horario.findById(req.params.id)
+    res.json(horario)
+}
 
+horariosController.deleteHorario = async(req, res)=>{
+    await Horario.findByIdAndDelete(req.params.id)
+    res.json({message: 'Horario Eliminado'})
+}
 module.exports = horariosController;

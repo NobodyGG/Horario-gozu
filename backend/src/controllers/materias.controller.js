@@ -8,15 +8,14 @@ materiasController.getMaterias = async (req, res) => {
 }
 
 materiasController.createMateria = async (req, res) => {
-    const {name, sigla, semestre, grupo, dia, inicio, fin} = req.body;
+    const {name, sigla, semestre, grupo, horas, docente} = req.body;
     const newMateria = new Materia({
         name: name,
         sigla: sigla,
         semestre: semestre,
         grupo,
-        dia,
-        inicio,
-        fin
+        horas,
+        docente
     });
     //console.log(newMateria)
     await newMateria.save();
@@ -30,15 +29,14 @@ materiasController.getMateria = async (req, res) => {
 
 materiasController.updateMateria = async (req, res) => {
     //console.log(req.params.id, req.body)
-    const {name, sigla, semestre, grupo, dia, inicio, fin} = req.body;
+    const {name, sigla, semestre, grupo, horas, docente} = req.body;
     await Materia.findOneAndUpdate({_id: req.params.id}, {
         name: name,
         sigla: sigla,
         semestre: semestre,
         grupo,
-        dia,
-        inicio,
-        fin
+        horas,
+        docente
     });
     res.json({message: 'Materia Actualizada'})
 }

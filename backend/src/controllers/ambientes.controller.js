@@ -9,10 +9,11 @@ ambientesController.getAmbientes = async(req, res)=>{
 }
 
 ambientesController.createAmbiente = async(req, res)=>{
-    const {nro, piso} = req.body
+    const {nro, piso, disponible} = req.body
     const newAmbiente = new Ambiente({
         nro,
         piso,
+        disponible
     })
 
     await newAmbiente.save()
@@ -25,10 +26,11 @@ ambientesController.getAmbiente = async(req, res)=>{
 }
 
 ambientesController.updateAmbiente = async(req, res)=>{
-    const {nro, piso} = req.body
+    const {nro, piso, disponible} = req.body
     await Ambiente.findByIdAndUpdate({_id: req.params.id},{
         nro,
-        piso
+        piso,
+        disponible
     })
     res.json({message: 'Ambiente Actualizado.'})
 }

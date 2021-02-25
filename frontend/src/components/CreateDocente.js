@@ -7,7 +7,7 @@ const CreateDocente = () => {
 
     const [getdocente, setGetdocente] = useState([])
     
-    const [materia, setMateria] = useState([])
+    //const [materia, setMateria] = useState([])
 
     const [editing, setEditing] = useState(false)
     
@@ -20,13 +20,12 @@ const CreateDocente = () => {
         ci: '',
         email: '',
         telefono: '',
-        materia: ''
+        horasTrabajo: ''
     });
 
     
     useEffect(() => {
         obtenerDocentes()
-        obtenerMaterias()
     }, [])
 
     const handleChange = e => {
@@ -35,7 +34,7 @@ const CreateDocente = () => {
             ...prevState,
             [name]: value
         }))
-        console.log(insert)
+        console.log(insert) 
     }
 
     const obtenerDocentes = async () => {
@@ -52,13 +51,12 @@ const CreateDocente = () => {
         setInsertar(inserDocente)
     }
 
-    // GET MATERIA
+    /*  GET MATERIA
     const obtenerMaterias = async () => {
         const res = await axios.get('http://localhost:4000/api/materias')
         const materias = await res.data
         setMateria(materias)
-
-    }
+    }*/
 
     //ELIMINAR
     const deleteDocente = async (id) =>{
@@ -71,6 +69,7 @@ const CreateDocente = () => {
         const res = await axios.get('http://localhost:4000/api/docentes/'+ id)
         const docent = await res.data
         setGetdocente(docent)
+        
     }
 
     //EDITAR    
@@ -82,11 +81,12 @@ const CreateDocente = () => {
         setInsertar(docen)
         cardEditar()
     }
+    
 
-    const editarDocente = async()=>{
-        const res = await axios.put('http://localhost:4000/api/docentes/'+insert._id, insert)
-        var editDoc = res.data
-        
+    const editarDocente = async()=>{        
+        const res = await axios.put('http://localhost:4000/api/docentes/'+getdocente._id, insert)
+        const editDoc = await res.data
+        setInsertar(editDoc)
     }
 
     
@@ -105,7 +105,7 @@ const CreateDocente = () => {
                                         name="nombres"
                                         className="form-control"
                                         onChange={handleChange}
-                                        defaultValue={getdocente && getdocente.nombres}
+                                        value={getdocente && getdocente.nombres}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -147,20 +147,12 @@ const CreateDocente = () => {
                                 <div className="form-group">
                                     <input
                                         type="text"
-                                        name="materia"
+                                        name="horasTrabajo"
                                         className="form-control"                                        
-                                        defaultValue={getdocente && getdocente.materia}
+                                        defaultValue={getdocente && getdocente.horasTrabajo}
                                         onChange={handleChange}
-                                        list="materias"
                                     />
-                                    <datalist id="materias">
-                                        {
-                                            materia.map(item => (
-                                                <option key={item._id} value={item.name}></option>
-                                            ))
-                                        }
-                                    </datalist>
-                                </div>           
+                                </div>         
                                 <button onClick={()=>editarDocente()} className="btn btn-primary w-100">
                                     Save
                                 </button>
@@ -218,19 +210,11 @@ const CreateDocente = () => {
                                     <div className="form-group">
                                         <input
                                             type="text"
-                                            name="materia"
+                                            name="horasTrabajo"
                                             className="form-control"
-                                            placeholder="Materia: "
+                                            placeholder="Horas de Trabajo: "
                                             onChange={handleChange}
-                                            list="materias"
                                         />
-                                        <datalist id="materias">
-                                            {
-                                                materia.map(item => (
-                                                    <option key={item._id} value={item.name}></option>
-                                                ))
-                                            }
-                                        </datalist>
                                     </div>
                                     <button onClick={()=>insertarDocente()} className="btn btn-primary w-100">
                                         Save
@@ -259,7 +243,7 @@ const CreateDocente = () => {
                                             <th scope="col">C.I:</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Telefono</th>
-                                            <th scope="col">Materia</th>
+                                            <th scope="col">Horas</th>
 
                                         </tr>
                                     </thead>
@@ -270,7 +254,7 @@ const CreateDocente = () => {
                                             <td>{item.ci}</td>
                                             <td>{item.email}</td>
                                             <td>{item.telefono}</td>
-                                            <td>{item.materia}</td>
+                                            <td>{item.horasTrabajo}</td>
                                         </tr>
                                     </tbody>
                                 </table>

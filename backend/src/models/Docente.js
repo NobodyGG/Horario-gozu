@@ -21,10 +21,9 @@ const docenteSchema = new Schema({
     telefono:{
         type: String
     },
-    materia:{
+    horasTrabajo:{
         type: String
     }
-
 })
 
 module.exports = model('Docente', docenteSchema)
